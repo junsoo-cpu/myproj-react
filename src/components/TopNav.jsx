@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function TopNav() {
   return (
     <div>
-      <ul className="flex gap-4">
+      <ul className="flex gap-4 pb-3">
         <li>
           <MyLink to="accounts/login/">로그인</MyLink>
         </li>
@@ -12,6 +12,9 @@ function TopNav() {
         </li>
         <li>
           <MyLink to="/reviews/">리뷰</MyLink>
+        </li>
+        <li>
+          <MyLink to="/examples/components/">컴포넌트 예시</MyLink>
         </li>
       </ul>
     </div>
