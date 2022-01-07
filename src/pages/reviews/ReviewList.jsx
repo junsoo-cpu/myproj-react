@@ -35,6 +35,30 @@ function PageReviewList() {
       });
   };
 
+  const deleteReview = (deletingReview) => {
+    const { id: deletingReviewId } = deletingReview;
+    const url = `http://localhost:8000/shop/api/reviews/${deletingReviewId}/`;
+
+    setLoading(true);
+    setError(null);
+
+    Axios.delete(url)
+      .then(() => {
+        console.log('삭제 성공');
+        // 선택지 #1) 삭제된 항목만 상탯값에서 제거
+        setReviewList((prevReviewList) =>
+          prevReviewList.filter((review) => review.id !== deletingReviewId),
+        );
+        // 선택지 #2) 전체를 새로고침
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <div>
       <h2>Review List</h2>
@@ -49,9 +73,15 @@ function PageReviewList() {
         새로고침
       </button>
 
-      {reviewList.map((review) => (
-        <Review key={review.id} review={review} />
-      ))}
+      <div className="">
+        {reviewList.map((review) => (
+          <Review
+            key={review.id}
+            review={review}
+            handleDelete={() => deleteReview(review)}
+          />
+        ))}
+      </div>
 
       <hr />
       <DebugStates loading={loading} error={error} reviewList={reviewList} />
