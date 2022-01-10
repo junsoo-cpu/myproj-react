@@ -4,7 +4,7 @@ import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 
 function PageBlogPostList() {
-  const [loading, setLoding] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [pageBlogPostList, setPageBlogPostList] = useState([]);
   useEffect(() => {
@@ -12,7 +12,7 @@ function PageBlogPostList() {
   }, []);
 
   const refetch = () => {
-    setLoding(true);
+    setLoading(true);
     setError(null);
 
     const url = 'http://localhost:8000/blog/api/posts/';
@@ -30,7 +30,31 @@ function PageBlogPostList() {
         setError(error);
       })
       .finally(() => {
-        setLoding(false);
+        setLoading(false);
+      });
+  };
+
+  const deleteBlog = (deletingBlog) => {
+    const { id: deletingBlogId } = deletingBlog;
+    const url = `http://localhost:8000/blog/api/posts/${deletingBlogId}/`;
+
+    setLoading(true);
+    setError(null);
+
+    Axios.delete(url)
+      .then(() => {
+        console.log('삭제 성공');
+        // 선택지 #1) 삭제된 항목만 상탯값에서 제거
+        setPageBlogPostList((prevPageBlogPostList) =>
+          prevPageBlogPostList.filter((blog) => blog.id !== deletingBlogId),
+        );
+        // 선택지 #2) 전체를 새로고침
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -48,9 +72,15 @@ function PageBlogPostList() {
         새로 고침
       </button>
 
-      {pageBlogPostList.map((blog) => (
-        <BlogList key={blog.id} blog={blog} />
-      ))}
+      <div className="">
+        {pageBlogPostList.map((blog) => (
+          <BlogList
+            key={blog.id}
+            blog={blog}
+            handleDelete={() => deleteBlog(blog)}
+          />
+        ))}
+      </div>
 
       <hr />
       <DebugStates
