@@ -20,7 +20,6 @@ function App() {
         <Route path="/accounts/profile/" element={<Profile />} />
         <Route path="/reviews/" element={<ReviewList />} />
         <Route path="/examples/components/" element={<Components />} />
-        <Route path="/reviews/:reviewId/edit" element={<ReviewForm />} />
         <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/blog/" element={<PageBlogPostList />} />
       </Routes>
