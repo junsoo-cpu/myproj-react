@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import BlogList from 'components/BlogList';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 
@@ -16,7 +17,7 @@ function PageBlogPostList() {
 
     const url = 'http://localhost:8000/blog/api/posts/';
     Axios.get(url)
-      .then((data) => {
+      .then(({ data }) => {
         console.group('정상 응답');
         console.log(data);
         console.groupEnd();
@@ -26,6 +27,7 @@ function PageBlogPostList() {
         console.group('에러 응답');
         console.log(error);
         console.groupEnd();
+        setError(error);
       })
       .finally(() => {
         setLoding(false);
@@ -45,6 +47,11 @@ function PageBlogPostList() {
       >
         새로 고침
       </button>
+
+      {pageBlogPostList.map((blog) => (
+        <BlogList key={blog.id} blog={blog} />
+      ))}
+
       <hr />
       <DebugStates
         loading={loading}
