@@ -18,8 +18,7 @@ function BlogList({ blog, handleEdit, handleDelete }) {
           </span>
         </div>
       </div>
-      {title}
-      {content}
+      <span>{title}</span>
     </div>
   );
 }

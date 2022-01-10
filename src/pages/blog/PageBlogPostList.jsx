@@ -1,8 +1,9 @@
 import Axios from 'axios';
 import BlogList from 'components/BlogList';
 import DebugStates from 'components/DebugStates';
-import { useEffect, useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PostDetail from 'components/PostDetail';
 
 function PageBlogPostList() {
   const [loading, setLoading] = useState(false);
@@ -57,6 +58,26 @@ function PageBlogPostList() {
       });
   };
 
+  const detailBlog = (detailingBlog) => {
+    const { id: detailingBlogId } = detailingBlog;
+    const url = `http://localhost:8000/blog/api/posts/${detailingBlogId}/`;
+    setLoading(true);
+    setError(null);
+    Axios.get(url)
+      .then(() => {
+        console.log('불러오기 성공');
+        setPageBlogPostList((prevBlogList) =>
+          prevBlogList.filter((blog) => blog.id === detailingBlogId),
+        );
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <div>
       <h2>BLOG</h2>
@@ -83,6 +104,7 @@ function PageBlogPostList() {
           <BlogList
             key={blog.id}
             blog={blog}
+            navigate={navigate}
             handleEdit={() => navigate(`/blog/${blog.id}/edit/`)}
             handleDelete={() => deleteBlog(blog)}
           />
