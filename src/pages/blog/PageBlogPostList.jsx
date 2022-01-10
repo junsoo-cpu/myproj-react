@@ -1,12 +1,16 @@
 import Axios from 'axios';
 import BlogList from 'components/BlogList';
 import DebugStates from 'components/DebugStates';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react/cjs/react.development';
+import { useNavigate } from 'react-router-dom';
 
 function PageBlogPostList() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [pageBlogPostList, setPageBlogPostList] = useState([]);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     refetch();
   }, []);
@@ -18,15 +22,10 @@ function PageBlogPostList() {
     const url = 'http://localhost:8000/blog/api/posts/';
     Axios.get(url)
       .then(({ data }) => {
-        console.group('정상 응답');
-        console.log(data);
-        console.groupEnd();
         setPageBlogPostList(data);
       })
       .catch((error) => {
-        console.group('에러 응답');
-        console.log(error);
-        console.groupEnd();
+        console.error(error);
         setError(error);
       })
       .finally(() => {
@@ -67,9 +66,16 @@ function PageBlogPostList() {
 
       <button
         onClick={() => refetch()}
-        className="bg-yellow-400 hover:bg-red-400"
+        className="bg-yellow-400 hover:bg-red-400 mr-2"
       >
         새로 고침
+      </button>
+
+      <button
+        onClick={() => navigate('/blog/new/')}
+        className="bg-blue-400 hover:bg-slate-400"
+      >
+        새 리뷰
       </button>
 
       <div className="">
@@ -77,6 +83,7 @@ function PageBlogPostList() {
           <BlogList
             key={blog.id}
             blog={blog}
+            handleEdit={() => navigate(`/blog/${blog.id}/edit/`)}
             handleDelete={() => deleteBlog(blog)}
           />
         ))}
@@ -86,7 +93,7 @@ function PageBlogPostList() {
       <DebugStates
         loading={loading}
         error={error}
-        reviewList={pageBlogPostList}
+        PageBlogPostList={pageBlogPostList}
       />
     </div>
   );

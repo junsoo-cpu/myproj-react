@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import BlogList from 'components/BlogList';
 import DebugStates from 'components/DebugStates';
 import Review from 'components/Review';
 import { useEffect, useState } from 'react';
@@ -79,7 +80,7 @@ function PageReviewList() {
 
       <div className="">
         {reviewList.map((review) => (
-          <Review
+          <BlogList
             key={review.id}
             review={review}
             handleEdit={() => navigate(`/reviews/${review.id}/edit/`)}
