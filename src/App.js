@@ -8,6 +8,8 @@ import ReviewForm from 'pages/reviews/ReviewForm';
 
 import './App.css';
 import PageBlogPostList from 'pages/blog/PageBlogPostList';
+import BlogForm from 'pages/blog/BlogForm';
+import PageDetail from 'pages/blog/PageDetail';
 
 function App() {
   return (
@@ -20,9 +22,11 @@ function App() {
         <Route path="/accounts/profile/" element={<Profile />} />
         <Route path="/reviews/" element={<ReviewList />} />
         <Route path="/examples/components/" element={<Components />} />
-        <Route path="/reviews/:reviewId/edit" element={<ReviewForm />} />
         <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/blog/" element={<PageBlogPostList />} />
+        <Route path="/blog/new/" element={<BlogForm />} />
+        <Route path="/blog/:blogId/edit/" element={<BlogForm />} />
+        <Route path="/blog/:postId/" element={<PageDetail />} />
       </Routes>
     </div>
   );
