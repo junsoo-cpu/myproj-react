@@ -10,21 +10,21 @@ function BlogForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
   return (
     <div>
       {loading && 'Loading ...'}
-      <div>
+      <div className="pb-5">
         <input
           name="title"
           value={fieldValues.title}
           onChange={handleFieldChange}
-          className="bg-gray-100 border border-gray-400"
+          className="bg-gray-100 border border-gray-400 w-96"
           disabled={loading}
         />
       </div>
-      <div>
+      <div className="pb-5">
         <textarea
           name="content"
           value={fieldValues.content}
           onChange={handleFieldChange}
-          className="bg-gray-100 border border-gray-400"
+          className="bg-gray-100 border border-gray-400 w-96 h-80"
           disabled={loading}
         />
       </div>

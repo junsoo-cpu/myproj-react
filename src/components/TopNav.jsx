@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function TopNav() {
   return (
-    <div>
+    <div class="app">
       <ul className="flex gap-4 pb-3">
         <li>
           <MyLink to="accounts/login/">로그인</MyLink>
@@ -19,7 +19,7 @@ function TopNav() {
         <li>
           <MyLink to="/blog/">블로그</MyLink>
         </li>
-        <li>
+        {/* <li>
           <MyLink to="examples/clock/">시계</MyLink>
         </li>
         <li>
@@ -33,7 +33,7 @@ function TopNav() {
         </li>
         <li>
           <MyLink to="examples/contextapisample2/">ContextApiSample2</MyLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

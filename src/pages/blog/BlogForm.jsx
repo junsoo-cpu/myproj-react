@@ -70,6 +70,7 @@ function PageBlogForm() {
         handleSubmit={saveBlog}
         loading={loading}
       />
+
       <DebugStates blogId={blogId} fieldValues={fieldValues} />
     </div>
   );

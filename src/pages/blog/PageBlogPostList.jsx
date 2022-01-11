@@ -2,7 +2,6 @@ import BlogList from 'components/blog/BlogList';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PostDetail from 'components/blog/PostDetail';
 import { axiosInstance } from 'api/base';
 
 function PageBlogPostList() {
@@ -90,19 +89,19 @@ function PageBlogPostList() {
 
       <button
         onClick={() => refetch()}
-        className="bg-yellow-400 hover:bg-red-400 mr-2"
+        className="bg-yellow-400 hover:bg-red-400 mr-2 rounded"
       >
         새로 고침
       </button>
 
       <button
         onClick={() => navigate('/blog/new/')}
-        className="bg-blue-400 hover:bg-slate-400"
+        className="bg-blue-400 hover:bg-slate-400 rounded"
       >
         새 리뷰
       </button>
 
-      <div className="">
+      <div className="mt-3 mb-3">
         {pageBlogPostList.map((blog) => (
           <BlogList
             key={blog.id}

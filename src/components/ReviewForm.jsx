@@ -27,12 +27,14 @@ function ReviewForm({
           className="bg-gray-100 border border-gray-400"
           disabled={loading}
         >
-          <option>0</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+          <div>
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </div>
         </select>
         <div className="text-red-400">{errorMessages.score}</div>
       </div>

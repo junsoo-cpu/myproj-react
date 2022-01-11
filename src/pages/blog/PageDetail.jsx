@@ -1,4 +1,3 @@
-import PostDetail from 'components/blog/PostDetail';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -7,7 +6,7 @@ import { axiosInstance } from 'api/base';
 function PageDetail() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [postList, setPostList] = useState([]);
+
   const [viewPost, setViewPost] = useState([]);
 
   const navigate = useNavigate();
@@ -40,18 +39,21 @@ function PageDetail() {
   return (
     <div>
       <h2>Post detail</h2>
-
       {loading && <div>Loading ...</div>}
       {error && <div>통신 중에 오류가 발생했습니다.</div>}
-
-      <div>
-        <div className="block bg-pink-200 text-center py-2 mb-2">
-          {viewPost.title}
+      <div class="m-auto max-w-xl">
+        <div class="bg-white shadow-2xl">
+          <div>
+            <img src="https://placeimg.com/640/480/animals" alt="" />
+          </div>
+          <div class="px-4 py-2 mt-2 bg-white">
+            <h2 class="font-bold text-2xl text-gray-800">{viewPost.title}</h2>
+            <p class="sm:text-sm text-xs text-gray-700 px-2 mr-1 my-3">
+              {viewPost.content}
+            </p>
+          </div>
         </div>
-        <img src="https://placeimg.com/640/480/animals" alt="" />
-        <div className="block bg-yellow-100 px-2 py-1">{viewPost.content}</div>
       </div>
-
       <hr />
       <br></br>
       <button
