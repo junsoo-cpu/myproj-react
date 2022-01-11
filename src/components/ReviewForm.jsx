@@ -2,7 +2,13 @@
 // handleFieldChange : 각 필드 값이 변화 시에 호출
 // handleSubmit : 인자없는 함수. submit 시에 호출.
 
-function ReviewForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
+function ReviewForm({
+  fieldValues,
+  errorMessages,
+  handleFieldChange,
+  handleSubmit,
+  loading,
+}) {
   const handleClickedSubmitButton = () => {
     if (handleSubmit) {
       handleSubmit();
@@ -10,7 +16,6 @@ function ReviewForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
       console.warn('handleSubmit 속성값을 지정해주세요.');
     }
   };
-
   return (
     <div>
       {loading && 'Loading ...'}
@@ -29,6 +34,7 @@ function ReviewForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
           <option>4</option>
           <option>5</option>
         </select>
+        <div className="text-red-400">{errorMessages.score}</div>
       </div>
       <div>
         <textarea
@@ -38,6 +44,7 @@ function ReviewForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
           className="bg-gray-100 border border-gray-400"
           disabled={loading}
         />
+        <div className="text-red-400">{errorMessages.content}</div>
       </div>
       <div>
         <button
@@ -46,7 +53,7 @@ function ReviewForm({ fieldValues, handleFieldChange, handleSubmit, loading }) {
           disabled={loading}
         >
           {loading && '로딩 아이콘'}
-          저장을 해줄까 말까 해줄까 말까
+          저장하기
         </button>
       </div>
     </div>

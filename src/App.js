@@ -11,6 +11,8 @@ import PageBlogPostList from 'pages/blog/PageBlogPostList';
 import BlogForm from 'pages/blog/BlogForm';
 import PageDetail from 'pages/blog/PageDetail';
 import Clock from 'pages/examples/CLock';
+import CssModule from 'pages/examples/CssModule';
+import CssInJs from 'pages/examples/CssInJs';
 
 function App() {
   return (
@@ -28,7 +30,9 @@ function App() {
         <Route path="/blog/new/" element={<BlogForm />} />
         <Route path="/blog/:blogId/edit/" element={<BlogForm />} />
         <Route path="/blog/:postId/" element={<PageDetail />} />
-        <Route path="/clock/" element={<Clock />} />
+        <Route path="/examples/clock/" element={<Clock />} />
+        <Route path="/examples/css-module" element={<CssModule />} />
+        <Route path="/examples/cssInjs" element={<CssInJs />} />
       </Routes>
     </div>
   );

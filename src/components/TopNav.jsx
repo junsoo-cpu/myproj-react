@@ -20,7 +20,13 @@ function TopNav() {
           <MyLink to="/blog/">블로그</MyLink>
         </li>
         <li>
-          <MyLink to="/clock/">시계</MyLink>
+          <MyLink to="examples/clock/">시계</MyLink>
+        </li>
+        <li>
+          <MyLink to="examples/css-module/">CssModule</MyLink>
+        </li>
+        <li>
+          <MyLink to="examples/cssInjs/">CssInJs</MyLink>
         </li>
       </ul>
     </div>
