@@ -1,8 +1,8 @@
-import BlogList from 'components/BlogList';
+import BlogList from 'components/blog/BlogList';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PostDetail from 'components/PostDetail';
+import PostDetail from 'components/blog/PostDetail';
 import { axiosInstance } from 'api/base';
 
 function PageBlogPostList() {

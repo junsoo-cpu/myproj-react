@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import DebugStates from 'components/DebugStates';
-import BlogForm from 'components/BlogForm';
+import BlogForm from 'components/blog/BlogForm';
 import useFieldValues from 'hooks/useFieldValues';
 import { useEffect, useState } from 'react/cjs/react.development';
 import { axiosInstance } from 'api/base';

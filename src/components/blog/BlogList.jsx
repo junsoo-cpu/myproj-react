@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 function BlogList({ blog, handleEdit, handleDelete }) {
+  const navigate = useNavigate();
   const { title, content } = blog;
   return (
     <div className="bg-yellow-100 border border-yellow-400 my-1 p-1">
@@ -18,7 +21,7 @@ function BlogList({ blog, handleEdit, handleDelete }) {
           </span>
         </div>
       </div>
-      <span>{title}</span>
+      <span onClick={() => navigate(`/blog/${blog.id}`)}>{title}</span>
     </div>
   );
 }
