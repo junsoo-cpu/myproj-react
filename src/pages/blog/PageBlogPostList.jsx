@@ -1,9 +1,9 @@
-import Axios from 'axios';
 import BlogList from 'components/BlogList';
 import DebugStates from 'components/DebugStates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PostDetail from 'components/PostDetail';
+import { axiosInstance } from 'api/base';
 
 function PageBlogPostList() {
   const [loading, setLoading] = useState(false);
@@ -20,8 +20,9 @@ function PageBlogPostList() {
     setLoading(true);
     setError(null);
 
-    const url = 'http://localhost:8000/blog/api/posts/';
-    Axios.get(url)
+    const url = `/blog/api/posts/`;
+    axiosInstance
+      .get(url)
       .then(({ data }) => {
         setPageBlogPostList(data);
       })
@@ -36,12 +37,13 @@ function PageBlogPostList() {
 
   const deleteBlog = (deletingBlog) => {
     const { id: deletingBlogId } = deletingBlog;
-    const url = `http://localhost:8000/blog/api/posts/${deletingBlogId}/`;
+    const url = `/blog/api/posts/${deletingBlogId}/`;
 
     setLoading(true);
     setError(null);
 
-    Axios.delete(url)
+    axiosInstance
+      .delete(url)
       .then(() => {
         console.log('삭제 성공');
         // 선택지 #1) 삭제된 항목만 상탯값에서 제거
@@ -60,10 +62,11 @@ function PageBlogPostList() {
 
   const detailBlog = (detailingBlog) => {
     const { id: detailingBlogId } = detailingBlog;
-    const url = `http://localhost:8000/blog/api/posts/${detailingBlogId}/`;
+    const url = `/blog/api/posts/${detailingBlogId}/`;
     setLoading(true);
     setError(null);
-    Axios.get(url)
+    axiosInstance
+      .get(url)
       .then(() => {
         console.log('불러오기 성공');
         setPageBlogPostList((prevBlogList) =>
