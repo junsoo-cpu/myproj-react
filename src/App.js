@@ -15,6 +15,8 @@ import CssModule from 'pages/examples/CssModule';
 import CssInJs from 'pages/examples/CssInJs';
 import ContextApisample from 'pages/examples/ContextApiSample';
 import ContextApiSample2 from 'pages/examples/ContextApiSample2';
+import PageNewsIndex from 'pages/news/PageNewsIndex';
+import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
 
 function App() {
   return (
@@ -25,13 +27,18 @@ function App() {
         <Route path="/" element={<Navigate to="/reviews/" />} />
         <Route path="/accounts/login/" element={<Login />} />
         <Route path="/accounts/profile/" element={<Profile />} />
+
         <Route path="/reviews/" element={<ReviewList />} />
-        <Route path="/examples/components/" element={<Components />} />
+
         <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/blog/" element={<PageBlogPostList />} />
         <Route path="/blog/new/" element={<BlogForm />} />
         <Route path="/blog/:blogId/edit/" element={<BlogForm />} />
         <Route path="/blog/:postId/" element={<PageDetail />} />
+        <Route path="/news/" element={<PageNewsIndex />} />
+        <Route path="/news/:articleId" element={<PageNewsArticleDetail />} />
+
+        <Route path="/examples/components/" element={<Components />} />
         <Route path="/examples/clock/" element={<Clock />} />
         <Route path="/examples/css-module" element={<CssModule />} />
         <Route path="/examples/cssInjs" element={<CssInJs />} />
