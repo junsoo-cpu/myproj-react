@@ -6,7 +6,7 @@ function PageDetail() {
 
   return (
     <div>
-      <h2>블로그#{postId} 보여주기</h2>
+      <h2>블로그#{postId}</h2>
       <BlogDetail postId={postId} />
     </div>
   );

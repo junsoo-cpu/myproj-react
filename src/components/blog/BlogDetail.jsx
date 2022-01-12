@@ -54,7 +54,7 @@ function BlogDetail({ postId }) {
         `삭제 요청 중 에러가 발생했습니다. (${deleteError.response.status} ${deleteError.response.statusText})`}
       {post && (
         <>
-          <div className="max-w-sm rounded overflow-hidden shadow-lg">
+          <div className="max-w-sm rounded lg:max-w-full overflow-hidden shadow-lg">
             <img
               className="w-full rounded-t-lg"
               src="https://placeimg.com/640/480/animalsg"
