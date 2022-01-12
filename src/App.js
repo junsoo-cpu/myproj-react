@@ -34,8 +34,9 @@ function App() {
         <Route path="/reviews/new/" element={<ReviewForm />} />
         <Route path="/blog/" element={<PageBlogPostList />} />
         <Route path="/blog/new/" element={<BlogForm />} />
-        <Route path="/blog/:blogId/edit/" element={<BlogForm />} />
+        <Route path="/blog/:postId/edit/" element={<BlogForm />} />
         <Route path="/blog/:postId/" element={<PageDetail />} />
+
         <Route path="/news/" element={<PageNewsIndex />} />
         <Route path="/news/:articleId" element={<PageNewsArticleDetail />} />
         <Route path="/news/new/" element={<PageNewsArticleForm />} />
