@@ -54,13 +54,21 @@ function BlogDetail({ postId }) {
         `삭제 요청 중 에러가 발생했습니다. (${deleteError.response.status} ${deleteError.response.statusText})`}
       {post && (
         <>
-          <h3 className="text-2xl my-5">{post.title}</h3>
-          <div>
-            {post.content.split(/[\r\n]+/).map((line, index) => (
-              <p className="my-3" key={index}>
-                {line}
-              </p>
-            ))}
+          <div className="max-w-sm rounded overflow-hidden shadow-lg">
+            <img
+              className="w-full rounded-t-lg"
+              src="https://placeimg.com/640/480/animalsg"
+              alt=""
+            />
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">{post.title}</div>
+
+              {post.content.split(/[\r\n]+/).map((line, index) => (
+                <p className="my-3 text-gray-700 text-base" key={index}>
+                  {line}
+                </p>
+              ))}
+            </div>
           </div>
         </>
       )}
