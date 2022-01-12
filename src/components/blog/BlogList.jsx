@@ -1,34 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import { useApiAxios } from 'api/base';
+import DebugStates from 'components/DebugStates';
+import { useEffect } from 'react/cjs/react.development';
+import BlogSummary from './BlogSummary';
 
-function BlogList({ blog, handleEdit, handleDelete }) {
-  const navigate = useNavigate();
-  const { title } = blog;
+function BlogList() {
+  const [{ data: blogList, loading, error }, refetch] =
+    useApiAxios('/blog/api/posts/');
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
   return (
-    <div className="-m-2 text-center">
-      <div className="p-2">
-        <div className="items-center bg-yellow-200 leading-none text-pink-600 rounded-full p-2 shadow text-teal text-sm">
-          <span
-            onClick={() => navigate(`/blog/${blog.id}`)}
-            className="cursor-pointer hover:text-gray-400 px-2"
-          >
-            {title}
-          </span>
-          <div className="justify-end">
-            <span
-              onClick={() => handleEdit()}
-              className="text-xs hover:text-blue-400 cursor-pointer mr-1"
-            >
-              수정
-            </span>
-            <span
-              onClick={() => handleDelete()}
-              className="text-xs hover:text-red-400 cursor-pointer"
-            >
-              삭제
-            </span>
-          </div>
-        </div>
-      </div>
+    <div>
+      <h2>블로그</h2>
+      {loading && '로딩 중...'}
+      {error && '로딩 중 에러가 발생했습니다.'}
+      {blogList && blogList.map((post) => <BlogSummary post={post} />)}
+      <DebugStates blogList={blogList} loading={loading} error={error} />
     </div>
   );
 }
