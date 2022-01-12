@@ -10,7 +10,6 @@ function PageBlogPostList() {
     <div>
       <H2>블로그 페이지</H2>
       <BlogList />
-
       <Button
         onClick={() => {
           navigate('/blog/new/');

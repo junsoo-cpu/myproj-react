@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApiAxios } from 'api/base';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function BlogDetail({ postId }) {
   const navigate = useNavigate();
@@ -19,11 +21,21 @@ function BlogDetail({ postId }) {
       { manual: true },
     );
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
     if (window.confirm('Are you sure?')) {
       // REST API 에서는 DELETE 요청에 대한 응답이 없습니다.
       deletePost().then(() => {
         navigate('/blog/');
+        toast.info('🦄 삭제되었습니다. 🦄', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     }
   };
@@ -52,6 +64,7 @@ function BlogDetail({ postId }) {
           </div>
         </>
       )}
+
       <hr className="my-3" />
       <div className="flex gap-4 mt-3 mb-10">
         <Link to="/blog/" className="hover:text-red-400">
@@ -71,4 +84,5 @@ function BlogDetail({ postId }) {
     </div>
   );
 }
+
 export default BlogDetail;
