@@ -40,8 +40,21 @@ function ArticleForm({ articleId, handleDidSave }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // fieldValues : 객체 (except 파일)
+    //  파일을 업로드 하려면 ,FormData 인스턴스를 써야한다.
+    const formData = new FormData();
+    Object.entries(fieldValues).forEach(([name, value]) => {
+      if (Array.isArray(value)) {
+        const fileList = value;
+        fileList.forEach((file) => formData.append(name, file));
+      } else {
+        formData.append(name, value);
+      }
+    });
+
     saveRequest({
-      data: fieldValues,
+      data: formData,
     }).then((response) => {
       const savedPost = response.data;
       if (handleDidSave) handleDidSave(savedPost);
@@ -81,6 +94,22 @@ function ArticleForm({ articleId, handleDidSave }) {
             </p>
           ))}
         </div>
+
+        <div>
+          <input
+            type="file"
+            accept=".png, .jpg, .jpeg"
+            name="photo"
+            // value=""
+            onChange={handleFieldChange}
+          />
+          {saveErrorMessages.photo?.map((message, index) => (
+            <p key={index} className="text-xs text-red-400">
+              {message}
+            </p>
+          ))}
+        </div>
+
         <div className="my-3">
           <Button>저장하기</Button>
         </div>
