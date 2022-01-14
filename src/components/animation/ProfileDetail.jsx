@@ -2,6 +2,7 @@ import { useApiAxios } from 'api/base';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function ProfileDetail({ profileId }) {
   const navigate = useNavigate();
@@ -24,6 +25,15 @@ function ProfileDetail({ profileId }) {
       // REST API 에서는 DELETE 요청에 대한 응답이 없습니다.
       deleteArticle().then(() => {
         navigate('/animation/');
+        toast.info('🙏삭제되었습니다.', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     }
   };

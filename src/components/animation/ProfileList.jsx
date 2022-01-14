@@ -2,6 +2,7 @@ import DebugStates from 'components/DebugStates';
 import ProfileSummary from './ProfileSummary';
 import { useApiAxios } from 'api/base';
 import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 function ProfileList() {
   const [{ data: profileList, loading, error }, refetch] = useApiAxios(
@@ -19,6 +20,7 @@ function ProfileList() {
       {error && '로딩 중 에러가 발생했습니다.'}
       {profileList &&
         profileList.map((profile) => <ProfileSummary profile={profile} />)}
+      <ToastContainer />
       <DebugStates profileList={profileList} loading={loading} error={error} />
     </div>
   );
