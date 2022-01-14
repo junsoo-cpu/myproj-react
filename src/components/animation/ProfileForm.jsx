@@ -13,12 +13,8 @@ const INIT_FIELD_VALUES = {
   height: '',
   hobby: '',
 };
-// !articleId : 생성
-// articleId  : 수정
+
 function ProfileForm({ profileId, handleDidSave }) {
-  // articleId 값이 있을 때에만 조회
-  // articleId => manual=false
-  // !articleId => manual=true
   const [{ data: profile, loading: getLoading, error: getError }] = useApiAxios(
     `/animation/api/profile/${profileId}/`,
     { manual: !profileId },
@@ -45,9 +41,6 @@ function ProfileForm({ profileId, handleDidSave }) {
   );
 
   useEffect(() => {
-    // 서버로 photo=null이 전달이 되면, 아래 오류가 발생
-    //   - The submitted data was not a file. Check the encoding type on the form.
-    //   - 대응 : fieldValues에서 photo만 제거해주거나, photo=null이라면 빈 문자열로 변경
     setFieldValues((prevFieldValues) => ({
       ...prevFieldValues,
       photo: '',
@@ -56,8 +49,7 @@ function ProfileForm({ profileId, handleDidSave }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // fieldValues : 객체 (except 파일)
-    // 파일을 업로드할려면, FormData 인스턴스를 써야합니다.
+
     const formData = new FormData();
     Object.entries(fieldValues).forEach(([name, value]) => {
       if (Array.isArray(value)) {
@@ -100,7 +92,7 @@ function ProfileForm({ profileId, handleDidSave }) {
           소개
           <textarea
             name="description"
-            value={fieldValues.content}
+            value={fieldValues.description}
             onChange={handleFieldChange}
             className="p-1 bg-gray-100 w-full h-80 outline-none focus:border focus:border-gray-400 focus:border-dashed"
           />
@@ -175,7 +167,6 @@ function ProfileForm({ profileId, handleDidSave }) {
             type="file"
             accept=".png, .jpg, .jpeg"
             name="photo"
-            // value=""
             onChange={handleFieldChange}
           />
           {saveErrorMessages.photo?.map((message, index) => (

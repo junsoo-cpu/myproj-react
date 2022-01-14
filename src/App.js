@@ -34,14 +34,18 @@ function App() {
           element={<PageAnimationProfileDetail />}
         />
         <Route path="/animation/new/" element={<PageAnimationProfileForm />} />
+        <Route
+          path="/animation/:profileId/edit/"
+          element={<PageAnimationProfileForm />}
+        />
 
         <Route path="/" element={<Navigate to="/reviews/" />} />
         <Route path="/accounts/login/" element={<Login />} />
         <Route path="/accounts/profile/" element={<Profile />} />
 
         <Route path="/reviews/" element={<ReviewList />} />
-
         <Route path="/reviews/new/" element={<ReviewForm />} />
+
         <Route path="/blog/" element={<PageBlogPostList />} />
         <Route path="/blog/new/" element={<BlogForm />} />
         <Route path="/blog/:postId/edit/" element={<BlogForm />} />

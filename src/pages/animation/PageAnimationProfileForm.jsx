@@ -1,12 +1,14 @@
 import ProfileForm from 'components/animation/ProfileForm';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function PageAnimationProfileForm() {
   const navigate = useNavigate();
 
+  const { profileId } = useParams();
+
   return (
     <ProfileForm
-      profileId={null}
+      profileId={profileId}
       handleDidSave={(savedPost) => navigate(`/animation/${savedPost.id}/`)}
     />
   );
