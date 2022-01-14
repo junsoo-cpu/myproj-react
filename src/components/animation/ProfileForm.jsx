@@ -5,6 +5,8 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import useFieldValues from 'hooks/useFieldValues';
 import { useApiAxios } from 'api/base';
 import { useEffect } from 'react/cjs/react.development';
+import produce from 'immer';
+
 const INIT_FIELD_VALUES = {
   name: '',
   description: '',
@@ -41,10 +43,11 @@ function ProfileForm({ profileId, handleDidSave }) {
   );
 
   useEffect(() => {
-    setFieldValues((prevFieldValues) => ({
-      ...prevFieldValues,
-      photo: '',
-    }));
+    setFieldValues(
+      produce((draft) => {
+        draft.photo = '';
+      }),
+    );
   }, [profile]);
 
   const handleSubmit = (e) => {

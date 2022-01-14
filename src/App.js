@@ -24,7 +24,7 @@ import PageAnimationProfileForm from 'pages/animation/PageAnimationProfileForm';
 
 function App() {
   return (
-    <div className="app">
+    <div className="container mx-auto">
       <TopNav />
 
       <Routes>

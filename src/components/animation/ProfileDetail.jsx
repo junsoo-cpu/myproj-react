@@ -43,6 +43,7 @@ function ProfileDetail({ profileId }) {
       {profile && (
         <>
           <h3 className="text-2xl my-5">{profile.name}</h3>
+          {profile.photo && <img src={profile.photo} alt="" />}
           <div>
             {profile.description.split(/[\r\n]+/).map((line, index) => (
               <p className="my-3" key={index}>
