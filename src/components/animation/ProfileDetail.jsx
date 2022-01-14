@@ -1,5 +1,40 @@
-function ProfileDetail({ profileId }) {
-  return <div>캐릭터 프로필을 보여줍니다. #{profileId}</div>;
-}
+import useAxios from 'axios-hooks';
+import { Link } from 'react-router-dom';
 
+function ProfileDetail({ profileId }) {
+  const [{ data: profile, loading, error }] = useAxios(
+    `http://localhost:8000/animation/api/profile/${profileId}/`,
+  );
+
+  return (
+    <div>
+      {loading && '로딩 중 ...'}
+      {error && '에러가 발생했습니다.'}
+      {profile && (
+        <>
+          <h3 className="text-2xl my-5">{profile.name}</h3>
+          <div>
+            {profile.description.split(/[\r\n]+/).map((line, index) => (
+              <p className="my-3" key={index}>
+                {line}
+              </p>
+            ))}
+          </div>
+        </>
+      )}
+      <hr className="my-3" />
+      <div className="flex gap-4 mt-3 mb-10">
+        <Link to="/animation/" className="hover:text-red-400">
+          목록으로
+        </Link>
+        <Link
+          to={`/animation/${profileId}/edit/`}
+          className="hover:text-red-400"
+        >
+          수정하기
+        </Link>
+      </div>
+    </div>
+  );
+}
 export default ProfileDetail;
