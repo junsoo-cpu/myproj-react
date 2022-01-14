@@ -19,6 +19,9 @@ function TopNav() {
         <div class="text-sm lg:flex-grow">
           <ul className="flex gap-4 pb-3">
             <li>
+              <MyLink to="/animation/">귀멸의 칼날</MyLink>
+            </li>
+            <li>
               <MyLink to="/blog/">블로그</MyLink>
             </li>
             <li>

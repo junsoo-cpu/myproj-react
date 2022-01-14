@@ -18,6 +18,8 @@ import ContextApiSample2 from 'pages/examples/ContextApiSample2';
 import PageNewsIndex from 'pages/news/PageNewsIndex';
 import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
 import PageNewsArticleForm from 'pages/news/PageNewsArticleForm';
+import PageAnimationIndex from 'pages/animation/PageAnimationIndex';
+import PageAnimationProfileDetail from 'pages/animation/PageAnimationProfileDetail';
 
 function App() {
   return (
@@ -25,6 +27,12 @@ function App() {
       <TopNav />
 
       <Routes>
+        <Route path="/animation/" element={<PageAnimationIndex />} />
+        <Route
+          path="/animation/:profileId/"
+          element={<PageAnimationProfileDetail />}
+        />
+
         <Route path="/" element={<Navigate to="/reviews/" />} />
         <Route path="/accounts/login/" element={<Login />} />
         <Route path="/accounts/profile/" element={<Profile />} />
