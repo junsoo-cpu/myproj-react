@@ -1,11 +1,16 @@
-import useAxios from 'axios-hooks';
 import DebugStates from 'components/DebugStates';
 import ProfileSummary from './ProfileSummary';
+import { useApiAxios } from 'api/base';
+import { useEffect } from 'react';
 
 function ProfileList() {
-  const [{ data: profileList, loading, error }, refetch] = useAxios(
-    'http://localhost:8000/animation/api/profile/',
+  const [{ data: profileList, loading, error }, refetch] = useApiAxios(
+    '/animation/api/profile/',
   );
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <div>

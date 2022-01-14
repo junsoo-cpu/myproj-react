@@ -20,6 +20,7 @@ import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
 import PageNewsArticleForm from 'pages/news/PageNewsArticleForm';
 import PageAnimationIndex from 'pages/animation/PageAnimationIndex';
 import PageAnimationProfileDetail from 'pages/animation/PageAnimationProfileDetail';
+import PageAnimationProfileForm from 'pages/animation/PageAnimationProfileForm';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           path="/animation/:profileId/"
           element={<PageAnimationProfileDetail />}
         />
+        <Route path="/animation/new/" element={<PageAnimationProfileForm />} />
 
         <Route path="/" element={<Navigate to="/reviews/" />} />
         <Route path="/accounts/login/" element={<Login />} />

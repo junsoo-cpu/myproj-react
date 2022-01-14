@@ -1,9 +1,9 @@
-import useAxios from 'axios-hooks';
+import { useApiAxios } from 'api/base';
 import { Link } from 'react-router-dom';
 
 function ProfileDetail({ profileId }) {
-  const [{ data: profile, loading, error }] = useAxios(
-    `http://localhost:8000/animation/api/profile/${profileId}/`,
+  const [{ data: profile, loading, error }] = useApiAxios(
+    `/animation/api/profile/${profileId}/`,
   );
 
   return (
