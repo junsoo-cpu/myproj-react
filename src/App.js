@@ -1,6 +1,4 @@
 import TopNav from 'components/TopNav';
-import Login from 'pages/accounts/Login';
-import Profile from 'pages/accounts/Profile';
 import ReviewList from 'pages/reviews/ReviewList';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Components from 'pages/examples/Components';
@@ -21,6 +19,8 @@ import PageNewsArticleForm from 'pages/news/PageNewsArticleForm';
 import PageAnimationIndex from 'pages/animation/PageAnimationIndex';
 import PageAnimationProfileDetail from 'pages/animation/PageAnimationProfileDetail';
 import PageAnimationProfileForm from 'pages/animation/PageAnimationProfileForm';
+import PageLogin from 'pages/accounts/PageLogin';
+import PageProfile from 'pages/accounts/PageProfile';
 
 function App() {
   return (
@@ -40,8 +40,8 @@ function App() {
         />
 
         <Route path="/" element={<Navigate to="/reviews/" />} />
-        <Route path="/accounts/login/" element={<Login />} />
-        <Route path="/accounts/profile/" element={<Profile />} />
+        <Route path="/accounts/login/" element={<PageLogin />} />
+        <Route path="/accounts/profile/" element={<PageProfile />} />
 
         <Route path="/reviews/" element={<ReviewList />} />
         <Route path="/reviews/new/" element={<ReviewForm />} />
