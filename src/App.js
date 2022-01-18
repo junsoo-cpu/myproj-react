@@ -21,6 +21,7 @@ import PageAnimationProfileDetail from 'pages/animation/PageAnimationProfileDeta
 import PageAnimationProfileForm from 'pages/animation/PageAnimationProfileForm';
 import PageLogin from 'pages/accounts/PageLogin';
 import PageProfile from 'pages/accounts/PageProfile';
+import PageSignUp from 'pages/accounts/PageSignUp';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<Navigate to="/news/" />} />
         <Route path="/accounts/login/" element={<PageLogin />} />
         <Route path="/accounts/profile/" element={<PageProfile />} />
+        <Route path="/accounts/signup/" element={<PageSignUp />} />
 
         <Route path="/reviews/" element={<ReviewList />} />
         <Route path="/reviews/new/" element={<ReviewForm />} />

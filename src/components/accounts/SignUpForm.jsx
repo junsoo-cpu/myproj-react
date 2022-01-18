@@ -5,7 +5,7 @@ import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 
-const INITIAL_FIELD_VALUES = { username: '', password: '' };
+const INITIAL_FIELD_VALUES = { username: '', password: '', password2: '' };
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function LoginForm() {
 
   const [{ loading, error }, requestToken] = useApiAxios(
     {
-      url: '/accounts/api/token/',
+      url: '/accounts/api/signup/',
       method: 'POST',
     },
     { manual: true },
@@ -24,27 +24,8 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    requestToken({ data: fieldValues }).then((response) => {
-      const { access, refresh, username, first_name, last_name } =
-        response.data;
-      // TODO: access/refresh token을 브라우저 어딘가에 저장해야 합니다.
-      // 저장해서 페이지 새로고침이 발생하더라도 그 token이 유실되지 않아야 합니다.
-      login({
-        access,
-        refresh,
-        username,
-        first_name,
-        last_name,
-      });
-
-      console.log('access :', access);
-      console.log('refresh :', refresh);
-      console.log('username :', username);
-      console.log('first_name :', first_name);
-      console.log('last_name :', last_name);
-
-      // 인증 후, 이동할 주소를 지정합니다.
-      navigate('/');
+    requestToken({ data: fieldValues }).then(() => {
+      navigate('/accounts/login');
     });
   };
   return (
@@ -74,7 +55,17 @@ function LoginForm() {
             className="p-3 bg-gray-100 focus:outline-none focus:border focus:border-gray-400 w-full"
           />
         </div>
-        <Button>로그인</Button>
+        <div className="my-3">
+          <input
+            type="password"
+            name="password2"
+            value={fieldValues.password2}
+            onChange={handleFieldChange}
+            placeholder="passowrd"
+            className="p-3 bg-gray-100 focus:outline-none focus:border focus:border-gray-400 w-full"
+          />
+        </div>
+        <Button>회원가입</Button>
       </form>
 
       <DebugStates auth={auth} fieldValues={fieldValues} />
