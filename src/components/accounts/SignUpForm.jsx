@@ -12,13 +12,14 @@ function LoginForm() {
 
   const [auth, _, login] = useAuth();
 
-  const [{ loading, error }, requestToken] = useApiAxios(
-    {
-      url: '/accounts/api/signup/',
-      method: 'POST',
-    },
-    { manual: true },
-  );
+  const [{ loading, error, errorMessages, non_field_errors }, requestToken] =
+    useApiAxios(
+      {
+        url: '/accounts/api/signup/',
+        method: 'POST',
+      },
+      { manual: true },
+    );
   const { fieldValues, handleFieldChange } =
     useFieldValues(INITIAL_FIELD_VALUES);
   const handleSubmit = (e) => {
@@ -45,6 +46,11 @@ function LoginForm() {
             className="p-3 bg-gray-100 focus:outline-none focus:border focus:border-gray-400 w-full"
           />
         </div>
+        {errorMessages.username?.map((message, index) => (
+          <p key={index} className="text-sm text-red-600">
+            {message}
+          </p>
+        ))}
         <div className="my-3">
           <input
             type="password"
@@ -55,6 +61,11 @@ function LoginForm() {
             className="p-3 bg-gray-100 focus:outline-none focus:border focus:border-gray-400 w-full"
           />
         </div>
+        {errorMessages.password?.map((message, index) => (
+          <p key={index} className="text-sm text-red-600">
+            {message}
+          </p>
+        ))}
         <div className="my-3">
           <input
             type="password"
@@ -65,6 +76,18 @@ function LoginForm() {
             className="p-3 bg-gray-100 focus:outline-none focus:border focus:border-gray-400 w-full"
           />
         </div>
+        {errorMessages.password2?.map((message, index) => (
+          <p key={index} className="text-sm text-red-600">
+            {message}
+          </p>
+        ))}
+        {errorMessages.non_field_errors?.map((message, index) => (
+          <p key={index} className="text-sm text-red-600">
+            {message}
+          </p>
+        ))}
+        {non_field_errors?.response?.error}
+
         <Button>회원가입</Button>
       </form>
 

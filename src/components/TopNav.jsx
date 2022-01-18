@@ -12,7 +12,7 @@ function TopNav() {
     <div className="my-3">
       <div className="flex place-content-between gap-4">
         <NavLink to="/" className="px-4 py-3 font-semibold">
-          이진석 블로그
+          나만의 블로그
         </NavLink>
         <div className="flex">
           <MyLink to="/blog/">블로그</MyLink>
