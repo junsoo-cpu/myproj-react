@@ -1,13 +1,23 @@
-import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useApiAxios } from 'api/base';
+
 import LoadingIndicator from 'components/LoadingIndicator';
+import { useApiAxios } from 'api/base';
+import useAuth from 'hooks/useAuth';
+import { useEffect } from 'react';
 
 function ArticleDetail({ articleId }) {
+  const [auth] = useAuth();
+
   const navigate = useNavigate();
 
   const [{ data: article, loading, error }, refetch] = useApiAxios(
-    `/news/api/articles/${articleId}/`,
+    {
+      url: `/news/api/articles/${articleId}/`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.access}`,
+      },
+    },
     { manual: true },
   );
 
@@ -16,10 +26,12 @@ function ArticleDetail({ articleId }) {
       {
         url: `/news/api/articles/${articleId}/`,
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${auth.access}`,
+        },
       },
       { manual: true },
     );
-
   const handleDelete = () => {
     if (window.confirm('Are you sure?')) {
       // REST API 에서는 DELETE 요청에 대한 응답이 없습니다.
@@ -28,23 +40,24 @@ function ArticleDetail({ articleId }) {
       });
     }
   };
-
   useEffect(() => {
     refetch();
   }, []);
-
   return (
     <div>
       {loading && <LoadingIndicator />}
       {deleteLoading && <LoadingIndicator>삭제 중 ...</LoadingIndicator>}
       {error &&
-        `로딩 중 에러가 발생했습니다. (${error.response.status} ${error.response.statusText})`}
+        `로딩 중 에러가 발생했습니다. (${error.response?.status} ${error.response?.statusText})`}
       {deleteError &&
-        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response.status} ${deleteError.response.statusText})`}
+        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response?.status} ${deleteError.response?.statusText})`}
       {article && (
         <>
           <h3 className="text-2xl my-5">{article.title}</h3>
-          {article.photo && <img src={article.photo} alt="" />}
+          <p>by {article.author.username}</p>
+          {article.photo && (
+            <img src={article.photo} alt={article.title} className="rounded" />
+          )}
           <div>
             {article.content.split(/[\r\n]+/).map((line, index) => (
               <p className="my-3" key={index}>
