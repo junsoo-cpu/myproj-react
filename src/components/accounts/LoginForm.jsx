@@ -2,16 +2,15 @@ import Button from 'components/Button';
 import DebugStates from 'components/DebugStates';
 import { useApiAxios } from 'api/base';
 import useFieldValues from 'hooks/useFieldValues';
-import useLocalStorage from 'hooks/useLocalStorage';
 import { useNavigate } from 'react-router-dom';
+import useAuth from 'hooks/useAuth';
 
-const INITIAL_AUTH = { isLoggedIn: false };
 const INITIAL_FIELD_VALUES = { username: '', password: '' };
 
 function LoginForm() {
   const navigate = useNavigate();
 
-  const [auth, setAuth] = useLocalStorage('auth', INITIAL_AUTH);
+  const [auth, setAuth] = useAuth();
 
   const [{ loading, error }, requestToken] = useApiAxios(
     {
