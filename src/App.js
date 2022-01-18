@@ -39,7 +39,7 @@ function App() {
           element={<PageAnimationProfileForm />}
         />
 
-        <Route path="/" element={<Navigate to="/reviews/" />} />
+        <Route path="/" element={<Navigate to="/news/" />} />
         <Route path="/accounts/login/" element={<PageLogin />} />
         <Route path="/accounts/profile/" element={<PageProfile />} />
 
