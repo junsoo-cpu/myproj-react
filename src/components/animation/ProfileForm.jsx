@@ -4,7 +4,7 @@ import H2 from 'components/H2';
 import LoadingIndicator from 'components/LoadingIndicator';
 import useFieldValues from 'hooks/useFieldValues';
 import { useApiAxios } from 'api/base';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import produce from 'immer';
 
 const INIT_FIELD_VALUES = {
@@ -74,7 +74,7 @@ function ProfileForm({ profileId, handleDidSave }) {
       <H2>profile Form</H2>
       {saveLoading && <LoadingIndicator>저장 중 ...</LoadingIndicator>}
       {saveError &&
-        `저장 중 에러가 발생했습니다. (${saveError.response.status} ${saveError.response.statusText})`}
+        `저장 중 에러가 발생했습니다. (${saveError.response?.status} ${saveError.response?.statusText})`}
       <form onSubmit={handleSubmit}>
         <div className="my-3">
           이름

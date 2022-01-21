@@ -47,9 +47,9 @@ function ProfileDetail({ profileId }) {
       {loading && <LoadingIndicator />}
       {deleteLoading && <LoadingIndicator>삭제 중 ...</LoadingIndicator>}
       {error &&
-        `로딩 중 에러가 발생했습니다. (${error.response.status} ${error.response.statusText})`}
+        `로딩 중 에러가 발생했습니다. (${error.response?.status} ${error.response?.statusText})`}
       {deleteError &&
-        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response.status} ${deleteError.response.statusText})`}
+        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response?.status} ${deleteError.response?.statusText})`}
       {profile && (
         <>
           <h3 className="text-2xl my-5">{profile.name}</h3>
