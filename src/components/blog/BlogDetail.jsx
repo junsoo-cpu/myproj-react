@@ -49,9 +49,9 @@ function BlogDetail({ postId }) {
       {loading && <LoadingIndicator />}
       {deleteLoading && <LoadingIndicator>삭제 중 ...</LoadingIndicator>}
       {error &&
-        `로딩 중 에러가 발생했습니다. (${error.response.status} ${error.response.statusText})`}
+        `로딩 중 에러가 발생했습니다. (${error.response?.status} ${error.response?.statusText})`}
       {deleteError &&
-        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response.status} ${deleteError.response.statusText})`}
+        `삭제 요청 중 에러가 발생했습니다. (${deleteError.response?.status} ${deleteError.response?.statusText})`}
       {post && (
         <>
           <div className="max-w-sm rounded lg:max-w-full overflow-hidden shadow-lg">

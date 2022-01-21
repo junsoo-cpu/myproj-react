@@ -1,6 +1,6 @@
 import { useApiAxios } from 'api/base';
 import DebugStates from 'components/DebugStates';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import BlogSummary from './BlogSummary';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
